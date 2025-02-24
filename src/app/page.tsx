@@ -176,7 +176,7 @@ export default function Home() {
             </h2>
             <div className="flex gap-6">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100065274810710#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-3xl md:text-4xl hover:text-blue-400 transition-colors drop-shadow-lg"
@@ -184,7 +184,7 @@ export default function Home() {
                 <FaFacebook />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/vocalcoachashleigh"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-3xl md:text-4xl hover:text-pink-400 transition-colors drop-shadow-lg"

@@ -4,10 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { loadStripe } from '@stripe/stripe-js';
-
-// Make sure to add your publishable key
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const PRICE_IDS = {
   single: 'price_XXXXXXXXXXXXX', // Replace with actual price ID for single session

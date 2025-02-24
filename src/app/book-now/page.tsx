@@ -2,8 +2,35 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+
+// Payment Status component to handle success/error messages
+const PaymentStatus = () => {
+  const searchParams = useSearchParams();
+  const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (searchParams.get('success')) {
+      setMessage('Payment successful! Please check your email for confirmation.');
+    }
+    if (searchParams.get('canceled')) {
+      setMessage('Payment canceled. If you need assistance, please contact us.');
+    }
+  }, [searchParams]);
+
+  if (!message) return null;
+
+  return (
+    <div className="fixed top-24 left-0 right-0 z-50 flex justify-center">
+      <div className={`p-4 rounded-lg shadow-lg ${
+        searchParams.get('success') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+      }`}>
+        {message}
+      </div>
+    </div>
+  );
+};
 
 const PRICE_IDS = {
   // Get these IDs from your Stripe Dashboard after creating the products
@@ -78,19 +105,10 @@ export default function BookNow() {
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<{ name: string; price: string; priceId: string; } | null>(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     setIsMounted(true);
-    
-    // Check for success/canceled status
-    if (searchParams.get('success')) {
-      alert('Payment successful! Please check your email for confirmation.');
-    }
-    if (searchParams.get('canceled')) {
-      alert('Payment canceled. If you need assistance, please contact us.');
-    }
-  }, [searchParams]);
+  }, []);
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
@@ -142,6 +160,10 @@ export default function BookNow() {
 
   return (
     <div className={`min-h-screen flex flex-col ${isMounted ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+      <Suspense fallback={null}>
+        <PaymentStatus />
+      </Suspense>
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-6 z-50">
         <div className="container mx-auto px-4">

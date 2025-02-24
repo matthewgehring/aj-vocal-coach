@@ -292,65 +292,65 @@ export default function Home() {
               {/* Testimonial 1 */}
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-700 italic">
-                  "Ashleigh's lessons are structured and well executed. His lessons are split into Easy to follow sections 
+                  &quot;Ashleigh&apos;s lessons are structured and well executed. His lessons are split into Easy to follow sections 
                   and the teaching quality is great. I have enjoyed all of my lessons so far and will continue to have 
-                  lessons with Ashleigh for the foreseeable future!"
+                  lessons with Ashleigh for the foreseeable future!&quot;
                 </p>
               </div>
 
               {/* Testimonial 2 */}
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-700 italic">
-                  "Alongside Ashleigh's impressive knowledge and abilities both internal and external to his discipline, 
+                  &quot;Alongside Ashleigh&apos;s impressive knowledge and abilities both internal and external to his discipline, 
                   Ashleigh has the patience, empathetic understanding, and social intelligence necessary to ensure that 
-                  the learner can engage with and comprehend complex theories and techniques."
+                  the learner can engage with and comprehend complex theories and techniques.&quot;
                 </p>
               </div>
 
               {/* Testimonial 3 */}
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-700 italic">
-                  "I started singing lessons with Ashleigh so that I could sing to my girlfriend on her birthday. 
-                  I'm so pleased with the progress that we made in just 3 weeks that I'm now looking forward to 
-                  my next goal so that we can continue working together!"
+                  &quot;I started singing lessons with Ashleigh so that I could sing to my girlfriend on her birthday. 
+                  I&apos;m so pleased with the progress that we made in just 3 weeks that I&apos;m now looking forward to 
+                  my next goal so that we can continue working together!&quot;
                 </p>
               </div>
 
               {/* Testimonial 4 */}
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-700 italic">
-                  "Ashleigh is genuinely the best singing teacher I have ever had (and I have all my lessons online) - 
+                  &quot;Ashleigh is genuinely the best singing teacher I have ever had (and I have all my lessons online) - 
                   so that says it all! He is friendly, productive and uses the lesson time to its full potential. He is 
                   extremely knowledgeable and has taught me a wide range of techniques. I now understand in detail the 
                   anatomy of the neck, tongue and vocal cords which has helped me to understand where to safely place 
                   sound whilst achieving amazing vocal quality. He tailors each lesson to YOU on what YOU want to learn. 
-                  I wouldn't go to anybody else as my progression is incredible."
+                  I wouldn&apos;t go to anybody else as my progression is incredible.&quot;
                 </p>
               </div>
 
               {/* Testimonial 5 */}
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-700 italic">
-                  "I connected with Ashleigh after previous attempts to work on my voice were a bit of a slog and 
+                  &quot;I connected with Ashleigh after previous attempts to work on my voice were a bit of a slog and 
                   lessons I had with a previous teacher felt very formulaic. After a long break from singing, restarting 
                   lessons with Ashleigh was massively different. My first lesson immediately focused on practical advice 
                   to work on my speicific goals. Ashleigh seemed to listen and match my goals to my style of music and 
-                  have a number of tools at hand to help me with that. It's no exageration to say that after my first 
-                  lesson I was buzzing with the possibilities and had made progress. My bass voice now doesn't seem as 
+                  have a number of tools at hand to help me with that. It&apos;s no exageration to say that after my first 
+                  lesson I was buzzing with the possibilities and had made progress. My bass voice now doesn&apos;t seem as 
                   restrictive as it had before and I have areas to work on. Since then I have made good progress and 
-                  every lesson gives me things to think about and seems applicable to my singing immediately."
+                  every lesson gives me things to think about and seems applicable to my singing immediately.&quot;
                 </p>
               </div>
 
               {/* Testimonial 6 */}
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-700 italic">
-                  "Less than a handful of lessons in and I am already benefiting from the level of insight and knowledge 
+                  &quot;Less than a handful of lessons in and I am already benefiting from the level of insight and knowledge 
                   that Ashleigh has. He explains difficult concepts in a manner that is easy for me to understand, and 
                   tailors my vocal exercises so they are challenging but achievable. I consider myself between a beginner 
                   and intermediate vocalist, and I feel that with consistent lessons with Ashleigh I can take my ability 
                   to the next level. I find that certain misconceptions and doubts that I had have been dispelled, and am 
-                  gaining in confidence from some of the benchmarks that Ashleigh has laid down."
+                  gaining in confidence from some of the benchmarks that Ashleigh has laid down.&quot;
                 </p>
               </div>
             </div>

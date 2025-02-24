@@ -2,16 +2,22 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-01-27.acacia',
+  apiVersion: '2023-10-16' as Stripe.LatestApiVersion
 });
-
-type StripeError = Stripe.errors.StripeError;
 
 export async function POST(req: Request) {
   try {
-    const { priceId } = await req.json();
+    const body = await req.json();
+    const { priceId } = body;
 
-    // Create Checkout Sessions from body params.
+    if (!priceId) {
+      return NextResponse.json(
+        { error: 'Price ID is required' },
+        { status: 400 }
+      );
+    }
+
+    // Create Checkout Session
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -25,18 +31,15 @@ export async function POST(req: Request) {
       automatic_tax: { enabled: true },
     });
 
-    return NextResponse.json({ url: session.url });
-  } catch (err) {
-    if (err instanceof Stripe.errors.StripeError) {
-      const stripeError = err as StripeError;
-      return NextResponse.json(
-        { error: stripeError.message },
-        { status: stripeError.statusCode || 500 }
-      );
+    if (!session.url) {
+      throw new Error('Failed to create checkout session URL');
     }
-    
+
+    return NextResponse.json({ url: session.url });
+  } catch (error) {
+    console.error('Stripe error:', error);
     return NextResponse.json(
-      { error: 'An unexpected error occurred' },
+      { error: 'Error creating checkout session' },
       { status: 500 }
     );
   }

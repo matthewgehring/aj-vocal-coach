@@ -143,10 +143,20 @@ export default function BookNow() {
         body: JSON.stringify({ priceId }),
       });
 
-      const { url } = await response.json();
-      window.location.href = url;
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+
+      if (!data.url) {
+        throw new Error('No checkout URL received from Stripe');
+      }
+
+      console.log('Redirecting to:', data.url); // Debug log
+      window.location.href = data.url;
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Payment Error:', error);
       alert('Something went wrong. Please try again or contact support.');
     } finally {
       setIsLoading(null);

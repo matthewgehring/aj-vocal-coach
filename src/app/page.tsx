@@ -20,22 +20,22 @@ const MobileNav = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
           <button onClick={() => {
             onClose();
             document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
-          }} className="text-left hover:text-gray-600 py-2">Home</button>
+          }} className="text-left hover:text-gray-600 text-black py-2">Home</button>
           <button onClick={() => {
             onClose();
             document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-          }} className="text-left hover:text-gray-600 py-2">About</button>
+          }} className="text-left hover:text-gray-600 text-black py-2">About</button>
           <button onClick={() => {
             onClose();
             document.getElementById('lessons')?.scrollIntoView({ behavior: 'smooth' });
-          }} className="text-left hover:text-gray-600 py-2">Lessons</button>
+          }} className="text-left hover:text-gray-600 text-black py-2">Lessons</button>
           <button onClick={() => {
             onClose();
             document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
-          }} className="text-left hover:text-gray-600 py-2">Testimonials</button>
-          <Link href="/book-now" className="hover:text-gray-600 py-2">Book Now</Link>
-          <Link href="/contact" className="hover:text-gray-600 py-2">Contact</Link>
-          <Link href="/news" className="hover:text-gray-600 py-2">News</Link>
+          }} className="text-left hover:text-gray-600 text-black py-2">Testimonials</button>
+          <Link href="/book-now" className="hover:text-gray-600 text-black py-2">Book Now</Link>
+          <Link href="/contact" className="hover:text-gray-600 text-black py-2">Contact</Link>
+          <Link href="/news" className="hover:text-gray-600 text-black py-2">News</Link>
         </nav>
       </div>
     </div>
@@ -324,10 +324,10 @@ export default function Home() {
           </div>
 
           {/* Content Box */}
-          <div className="relative z-10 bg-gray-50/95 rounded-xl shadow-2xl max-w-3xl mx-4 p-6 md:p-12 text-center">
+          <div className="relative z-10 bg-gray-50/95 rounded-xl shadow-2xl max-w-3xl mx-4 p-6 md:p-12 text-center text-black">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">LESSONS</h2>
             
-            <div className="space-y-6 text-base md:text-lg">
+            <div className="space-y-6 text-base md:text-lg text-black">
               <p className="font-semibold">
                 IN-PERSON LESSONS IN MANCHESTER CITY CENTRE AVAILABLE FOR THOSE WANTING TO WORK IN PERSON.
               </p>
@@ -359,7 +359,7 @@ export default function Home() {
                 <p>Prices for block bookings can be viewed here</p>
               </div>
 
-              <div className="bg-gray-100 p-6 rounded-lg">
+              <div className="bg-gray-100 p-6 rounded-lg text-black">
                 <h3 className="text-2xl font-bold mb-4">DISCOUNT</h3>
                 <p>
                   MU Members, Equity Members and current Students are eligible for a 10% discount on all block booking rates,{' '}
@@ -380,7 +380,7 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {/* Testimonial 1 */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-black">
                 <p className="text-gray-700 italic">
                   &quot;Ashleigh&apos;s lessons are structured and well executed. His lessons are split into Easy to follow sections 
                   and the teaching quality is great. I have enjoyed all of my lessons so far and will continue to have 
@@ -389,7 +389,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 2 */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-black">
                 <p className="text-gray-700 italic">
                   &quot;Alongside Ashleigh&apos;s impressive knowledge and abilities both internal and external to his discipline, 
                   Ashleigh has the patience, empathetic understanding, and social intelligence necessary to ensure that 
@@ -398,7 +398,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 3 */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-black">
                 <p className="text-gray-700 italic">
                   &quot;I started singing lessons with Ashleigh so that I could sing to my girlfriend on her birthday. 
                   I&apos;m so pleased with the progress that we made in just 3 weeks that I&apos;m now looking forward to 
@@ -407,7 +407,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 4 */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-black">
                 <p className="text-gray-700 italic">
                   &quot;Ashleigh is genuinely the best singing teacher I have ever had (and I have all my lessons online) - 
                   so that says it all! He is friendly, productive and uses the lesson time to its full potential. He is 
@@ -419,7 +419,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 5 */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-black">
                 <p className="text-gray-700 italic">
                   &quot;I connected with Ashleigh after previous attempts to work on my voice were a bit of a slog and 
                   lessons I had with a previous teacher felt very formulaic. After a long break from singing, restarting 
@@ -433,7 +433,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 6 */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-black">
                 <p className="text-gray-700 italic">
                   &quot;Less than a handful of lessons in and I am already benefiting from the level of insight and knowledge 
                   that Ashleigh has. He explains difficult concepts in a manner that is easy for me to understand, and 

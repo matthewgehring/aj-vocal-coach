@@ -4,8 +4,34 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+// Mobile Navigation Component
+const MobileNav = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50">
+      <div className="bg-white h-full w-4/5 max-w-sm p-6">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-xl font-bold">Menu</h2>
+          <button onClick={onClose} className="text-2xl">✕</button>
+        </div>
+        <nav className="flex flex-col space-y-4">
+          <Link href="/#home" className="hover:text-gray-600 py-2">Home</Link>
+          <Link href="/#about" className="hover:text-gray-600 py-2">About</Link>
+          <Link href="/#lessons" className="hover:text-gray-600 py-2">Lessons</Link>
+          <Link href="/#testimonials" className="hover:text-gray-600 py-2">Testimonials</Link>
+          <Link href="/book-now" className="hover:text-gray-600 py-2">Book Now</Link>
+          <Link href="/contact" className="hover:text-gray-600 py-2">Contact</Link>
+          <Link href="/news" className="hover:text-gray-600 py-2">News</Link>
+        </nav>
+      </div>
+    </div>
+  );
+};
+
 export default function News() {
   const [isMounted, setIsMounted] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,43 +64,42 @@ export default function News() {
   return (
     <div className={`min-h-screen flex flex-col ${isMounted ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-6 z-50">
+      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 md:py-6 z-40">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6">
             ASHLEIGH D VOICE COACHING
           </h1>
-          <nav className="flex justify-center space-x-6 text-lg">
-            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600 cursor-pointer">
-              Home
-            </Link>
-            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600 cursor-pointer">
-              About
-            </Link>
-            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600 cursor-pointer">
-              Lessons
-            </Link>
-            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600 cursor-pointer">
-              Testimonials
-            </Link>
-            <Link href="/book-now" className="hover:text-gray-600">
-              Book Now
-            </Link>
-            <Link href="/contact" className="hover:text-gray-600">
-              Contact
-            </Link>
-            <Link href="/news" className="hover:text-gray-600">
-              News
-            </Link>
+          {/* Mobile menu button */}
+          <button 
+            onClick={() => setShowMobileNav(true)}
+            className="md:hidden fixed top-6 left-4 z-50 p-2"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex justify-center space-x-6 text-lg">
+            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600">Home</Link>
+            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600">About</Link>
+            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600">Lessons</Link>
+            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600">Testimonials</Link>
+            <Link href="/book-now" className="hover:text-gray-600">Book Now</Link>
+            <Link href="/contact" className="hover:text-gray-600">Contact</Link>
+            <Link href="/news" className="hover:text-gray-600">News</Link>
           </nav>
         </div>
       </header>
 
+      {/* Mobile Navigation */}
+      <MobileNav isOpen={showMobileNav} onClose={() => setShowMobileNav(false)} />
+
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-20 mt-32">
+      <main className="flex-grow container mx-auto px-4 py-16 mt-24 md:py-20 md:mt-32">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">News</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">News</h1>
           
-          <div className="space-y-6 text-lg">
+          <div className="space-y-6 text-base md:text-lg">
             <p>
               On 28th March Ashleigh will be hosting and performing a show in Manchester City Centre 
               under his musical act name AJ LeRoy. The show will be an intimate exploration of the 
@@ -89,9 +114,9 @@ export default function News() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-6 text-center">
+      <footer className="bg-black text-white py-4 md:py-6 text-center">
         <div className="container mx-auto px-4">
-          <p className="text-sm">©2025 by Ashleigh D Voice Coaching.</p>
+          <p className="text-xs md:text-sm">©2025 by Ashleigh D Voice Coaching.</p>
         </div>
       </footer>
     </div>

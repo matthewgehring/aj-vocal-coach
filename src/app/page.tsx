@@ -5,10 +5,48 @@ import Image from "next/image";
 import { useEffect, useState, FormEvent } from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 
+// Mobile Navigation Component
+const MobileNav = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50">
+      <div className="bg-white h-full w-4/5 max-w-sm p-6">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-xl font-bold">Menu</h2>
+          <button onClick={onClose} className="text-2xl">✕</button>
+        </div>
+        <nav className="flex flex-col space-y-4">
+          <button onClick={() => {
+            onClose();
+            document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+          }} className="text-left hover:text-gray-600 py-2">Home</button>
+          <button onClick={() => {
+            onClose();
+            document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+          }} className="text-left hover:text-gray-600 py-2">About</button>
+          <button onClick={() => {
+            onClose();
+            document.getElementById('lessons')?.scrollIntoView({ behavior: 'smooth' });
+          }} className="text-left hover:text-gray-600 py-2">Lessons</button>
+          <button onClick={() => {
+            onClose();
+            document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
+          }} className="text-left hover:text-gray-600 py-2">Testimonials</button>
+          <Link href="/book-now" className="hover:text-gray-600 py-2">Book Now</Link>
+          <Link href="/contact" className="hover:text-gray-600 py-2">Contact</Link>
+          <Link href="/news" className="hover:text-gray-600 py-2">News</Link>
+        </nav>
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showMobileNav, setShowMobileNav] = useState(false);
   
   // Form state
   const [formData, setFormData] = useState({
@@ -82,39 +120,38 @@ export default function Home() {
   return (
     <div className={`min-h-screen ${isMounted ? 'transition-opacity duration-500 opacity-100' : 'opacity-0'}`}>
       {/* Header and Navigation */}
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-4xl font-bold text-center mb-6">
+      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-40">
+        <div className="container mx-auto px-4 py-4 md:py-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6">
             ASHLEIGH D VOICE COACHING
           </h1>
-          <nav className="flex justify-center space-x-6 text-lg">
-            <button onClick={() => scrollToSection("home")} className="hover:text-gray-600">
-              Home
-            </button>
-            <button onClick={() => scrollToSection("about")} className="hover:text-gray-600">
-              About
-            </button>
-            <button onClick={() => scrollToSection("lessons")} className="hover:text-gray-600">
-              Lessons
-            </button>
-            <button onClick={() => scrollToSection("testimonials")} className="hover:text-gray-600">
-              Testimonials
-            </button>
-            <Link href="/book-now" className="hover:text-gray-600">
-              Book Now
-            </Link>
-            <Link href="/contact" className="hover:text-gray-600">
-              Contact
-            </Link>
-            <Link href="/news" className="hover:text-gray-600">
-              News
-            </Link>
+          {/* Mobile menu button */}
+          <button 
+            onClick={() => setShowMobileNav(true)}
+            className="md:hidden fixed top-6 left-4 z-50 p-2"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex justify-center space-x-6 text-lg">
+            <button onClick={() => scrollToSection("home")} className="hover:text-gray-600">Home</button>
+            <button onClick={() => scrollToSection("about")} className="hover:text-gray-600">About</button>
+            <button onClick={() => scrollToSection("lessons")} className="hover:text-gray-600">Lessons</button>
+            <button onClick={() => scrollToSection("testimonials")} className="hover:text-gray-600">Testimonials</button>
+            <Link href="/book-now" className="hover:text-gray-600">Book Now</Link>
+            <Link href="/contact" className="hover:text-gray-600">Contact</Link>
+            <Link href="/news" className="hover:text-gray-600">News</Link>
           </nav>
         </div>
       </header>
 
+      {/* Mobile Navigation */}
+      <MobileNav isOpen={showMobileNav} onClose={() => setShowMobileNav(false)} />
+
       {/* Main Content Sections */}
-      <main className="pt-40">
+      <main className="pt-24 md:pt-40">
         {/* Home Section */}
         <section id="home" className="relative min-h-screen flex flex-col items-center justify-center">
           {/* Hero Image */}
@@ -130,8 +167,8 @@ export default function Home() {
           </div>
           
           {/* Overlay Content */}
-          <div className="relative z-10 flex flex-col items-center gap-8 text-white">
-            <h2 className="text-5xl font-bold text-center drop-shadow-lg">
+          <div className="relative z-10 flex flex-col items-center gap-8 text-white px-4 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold drop-shadow-lg">
               Welcome to Ashleigh D Voice Coaching
             </h2>
             <div className="flex gap-6">
@@ -139,7 +176,7 @@ export default function Home() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-4xl hover:text-blue-400 transition-colors drop-shadow-lg"
+                className="text-3xl md:text-4xl hover:text-blue-400 transition-colors drop-shadow-lg"
               >
                 <FaFacebook />
               </a>
@@ -147,7 +184,7 @@ export default function Home() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-4xl hover:text-pink-400 transition-colors drop-shadow-lg"
+                className="text-3xl md:text-4xl hover:text-pink-400 transition-colors drop-shadow-lg"
               >
                 <FaInstagram />
               </a>
@@ -156,10 +193,10 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="min-h-screen bg-gray-50 py-20">
-          <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <section id="about" className="min-h-screen bg-gray-50 py-12 md:py-20">
+          <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Left Column - Image */}
-            <div className="relative h-full min-h-[800px]">
+            <div className="relative h-[400px] md:h-full md:min-h-[800px]">
               <Image
                 src="/aj.avif"
                 alt="Ashleigh D"
@@ -171,11 +208,11 @@ export default function Home() {
 
             {/* Right Column - Content */}
             <div className="flex flex-col gap-6">
-              <div className="flex items-start gap-6">
-                <h2 className="text-4xl font-bold">
+              <div className="flex items-start gap-4 md:gap-6">
+                <h2 className="text-3xl md:text-4xl font-bold">
                   ABOUT<br />ASHLEIGH
                 </h2>
-                <div className="relative w-[150px] h-[150px]">
+                <div className="relative w-[100px] md:w-[150px] h-[100px] md:h-[150px]">
                   <Image
                     src="/EMT estill master trainer badge.avif"
                     alt="Estill Master Trainer Badge"
@@ -185,7 +222,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <p className="text-lg">
+              <p className="text-base md:text-lg">
                 I am a professional vocal coach providing voice lessons in Manchester City Centre in the north-west of England, 
                 experienced across a variety of styles and genres. I have years of experience teaching a vast mix of students 
                 from absolute beginners to professionals and pride myself on giving you the ability to take control and unlock 
@@ -193,7 +230,7 @@ export default function Home() {
                 Estill Master Trainer.
               </p>
 
-              <p className="text-lg">
+              <p className="text-base md:text-lg">
                 You can learn more about Estill Voice Technique at{' '}
                 <a 
                   href="https://estillvoice.com/about/" 
@@ -205,7 +242,7 @@ export default function Home() {
                 </a>.
               </p>
 
-              <p className="text-lg">
+              <p className="text-base md:text-lg">
                 <a 
                   href="https://estillvoice.com/find-a-trainer/trainer-profile/?uid=1731"
                   target="_blank"
@@ -221,7 +258,7 @@ export default function Home() {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-xl font-semibold mb-2">Vocal Technique</h4>
-                    <p className="text-lg">
+                    <p className="text-base md:text-lg">
                       Learn to sing with more ease, more intent and develop true control of your voice. 
                       Learn about how the voice works and gain effective and repeatable strategies to produce 
                       the voice you want. We all want to stop reaching and pushing and start allowing the voice 
@@ -231,7 +268,7 @@ export default function Home() {
 
                   <div>
                     <h4 className="text-xl font-semibold mb-2">Performance Technique</h4>
-                    <p className="text-lg">
+                    <p className="text-base md:text-lg">
                       Look and feel more natural, commanding and engaging in your performances and really connect 
                       to your material. As singers, speakers and actors, the most important job we have is to 
                       communicate and connect with our listeners and audience.
@@ -240,7 +277,7 @@ export default function Home() {
 
                   <div>
                     <h4 className="text-xl font-semibold mb-2">Confidence</h4>
-                    <p className="text-lg">
+                    <p className="text-base md:text-lg">
                       Spend time and energy working on a new skill and see your confidence blossom! Many students 
                       comment that when the confidence in their voice grows so does their confidence in other areas of life.
                     </p>
@@ -248,7 +285,7 @@ export default function Home() {
 
                   <div>
                     <h4 className="text-xl font-semibold mb-2">Artistry</h4>
-                    <p className="text-lg">
+                    <p className="text-base md:text-lg">
                       Develop your own sound and style and release the potential of your own unique voice.
                     </p>
                   </div>
@@ -256,12 +293,12 @@ export default function Home() {
               </div>
 
               <div className="mt-8 space-y-4">
-                <p className="text-lg">
+                <p className="text-base md:text-lg">
                   If you&apos;re ready to take control of your voice, then contact Ashleigh to arrange a lesson 
                   in-person in Manchester or online.
                 </p>
 
-                <p className="text-lg">
+                <p className="text-base md:text-lg">
                   Be sure to check out our{' '}
                   <Link href="/news" className="text-blue-600 hover:text-blue-800 underline">
                     News Page
@@ -274,7 +311,7 @@ export default function Home() {
         </section>
 
         {/* Lessons Section */}
-        <section id="lessons" className="relative min-h-screen flex items-center justify-center">
+        <section id="lessons" className="relative min-h-screen flex items-center justify-center py-12 md:py-20">
           {/* Background Image */}
           <div className="absolute inset-0 w-full h-full">
             <Image
@@ -287,10 +324,10 @@ export default function Home() {
           </div>
 
           {/* Content Box */}
-          <div className="relative z-10 bg-gray-50/95 rounded-xl shadow-2xl max-w-3xl mx-4 p-8 md:p-12 text-center">
-            <h2 className="text-4xl font-bold mb-8">LESSONS</h2>
+          <div className="relative z-10 bg-gray-50/95 rounded-xl shadow-2xl max-w-3xl mx-4 p-6 md:p-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">LESSONS</h2>
             
-            <div className="space-y-6 text-lg">
+            <div className="space-y-6 text-base md:text-lg">
               <p className="font-semibold">
                 IN-PERSON LESSONS IN MANCHESTER CITY CENTRE AVAILABLE FOR THOSE WANTING TO WORK IN PERSON.
               </p>
@@ -337,11 +374,11 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="min-h-screen bg-gray-50 py-20">
+        <section id="testimonials" className="min-h-screen bg-gray-50 py-12 md:py-20">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12">Testimonials</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Testimonials</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {/* Testimonial 1 */}
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-700 italic">
@@ -411,26 +448,26 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section className="bg-black text-white py-20">
+        <section className="bg-black text-white py-12 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
               {/* Left Column - Contact Info */}
               <div className="space-y-6">
                 <h2 className="text-4xl font-bold">CONTACT ASHLEIGH</h2>
-                <p className="text-lg">
+                <p className="text-base md:text-lg">
                   Want singing lessons in Manchester? Or looking for online singing lessons? 
                   Contact Ashleigh by email or call/text with the details below or use the in-site contact form.
                 </p>
                 <div className="space-y-2">
                   <a 
                     href="mailto:ashleigh.dowler@hotmail.co.uk"
-                    className="text-lg block hover:text-blue-400 transition-colors"
+                    className="text-base md:text-lg block hover:text-blue-400 transition-colors"
                   >
                     ashleigh.dowler@hotmail.co.uk
                   </a>
                   <a 
                     href="tel:07841049513"
-                    className="text-lg block hover:text-blue-400 transition-colors"
+                    className="text-base md:text-lg block hover:text-blue-400 transition-colors"
                   >
                     07841049513
                   </a>
@@ -526,9 +563,9 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-6 text-center border-t border-white/10">
+      <footer className="bg-black text-white py-4 md:py-6 text-center border-t border-white/10">
         <div className="container mx-auto px-4">
-          <p className="text-sm">©2025 by Ashleigh D Voice Coaching.</p>
+          <p className="text-xs md:text-sm">©2025 by Ashleigh D Voice Coaching.</p>
         </div>
       </footer>
     </div>

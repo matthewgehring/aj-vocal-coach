@@ -55,31 +55,31 @@ const CheckoutPreview = ({
   if (!isOpen || !selectedProduct) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg p-4 md:p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold">Checkout Preview</h3>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <h3 className="text-lg md:text-xl font-bold">Checkout Preview</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 p-2">
             ✕
           </button>
         </div>
         <div className="space-y-4">
           <div className="border-b pb-4">
-            <p className="text-lg font-semibold">{selectedProduct.name}</p>
-            <p className="text-2xl font-bold">{selectedProduct.price}</p>
+            <p className="text-base md:text-lg font-semibold">{selectedProduct.name}</p>
+            <p className="text-xl md:text-2xl font-bold">{selectedProduct.price}</p>
           </div>
           <div className="space-y-2">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm md:text-base text-gray-600">
               You will be redirected to Stripe&apos;s secure checkout page to complete your purchase.
             </p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm md:text-base text-gray-600">
               After payment, you&apos;ll receive a confirmation email with next steps.
             </p>
           </div>
-          <div className="flex justify-end gap-2 mt-6">
+          <div className="flex flex-col-reverse md:flex-row justify-end gap-2 mt-6">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800"
+              className="w-full md:w-auto px-4 py-2 text-gray-600 hover:text-gray-800 border border-gray-300 rounded"
             >
               Cancel
             </button>
@@ -88,7 +88,7 @@ const CheckoutPreview = ({
                 onClose();
                 onProceed(selectedProduct.priceId);
               }}
-              className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800"
+              className="w-full md:w-auto px-4 py-2 bg-black text-white rounded hover:bg-gray-800"
             >
               Proceed to Payment
             </button>
@@ -99,10 +99,36 @@ const CheckoutPreview = ({
   );
 };
 
+// Add MobileNav component
+const MobileNav = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50">
+      <div className="bg-white h-full w-4/5 max-w-sm p-6">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-xl font-bold">Menu</h2>
+          <button onClick={onClose} className="text-2xl">✕</button>
+        </div>
+        <nav className="flex flex-col space-y-4">
+          <Link href="/#home" className="hover:text-gray-600 py-2">Home</Link>
+          <Link href="/#about" className="hover:text-gray-600 py-2">About</Link>
+          <Link href="/#lessons" className="hover:text-gray-600 py-2">Lessons</Link>
+          <Link href="/#testimonials" className="hover:text-gray-600 py-2">Testimonials</Link>
+          <Link href="/book-now" className="hover:text-gray-600 py-2">Book Now</Link>
+          <Link href="/contact" className="hover:text-gray-600 py-2">Contact</Link>
+          <Link href="/news" className="hover:text-gray-600 py-2">News</Link>
+        </nav>
+      </div>
+    </div>
+  );
+};
+
 export default function BookNow() {
   const [isMounted, setIsMounted] = useState(false);
   const [isLoading, setIsLoading] = useState<string | null>(null);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<{ name: string; price: string; priceId: string; } | null>(null);
   const router = useRouter();
 
@@ -175,41 +201,40 @@ export default function BookNow() {
       </Suspense>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-6 z-50">
+      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 md:py-6 z-40">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6">
             ASHLEIGH D VOICE COACHING
           </h1>
-          <nav className="flex justify-center space-x-6 text-lg">
-            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600 cursor-pointer">
-              Home
-            </Link>
-            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600 cursor-pointer">
-              About
-            </Link>
-            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600 cursor-pointer">
-              Lessons
-            </Link>
-            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600 cursor-pointer">
-              Testimonials
-            </Link>
-            <Link href="/book-now" className="hover:text-gray-600">
-              Book Now
-            </Link>
-            <Link href="/contact" className="hover:text-gray-600">
-              Contact
-            </Link>
-            <Link href="/news" className="hover:text-gray-600">
-              News
-            </Link>
+          {/* Mobile menu button */}
+          <button 
+            onClick={() => setShowMobileNav(true)}
+            className="md:hidden fixed top-6 left-4 z-50 p-2"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex justify-center space-x-6 text-lg">
+            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600">Home</Link>
+            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600">About</Link>
+            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600">Lessons</Link>
+            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600">Testimonials</Link>
+            <Link href="/book-now" className="hover:text-gray-600">Book Now</Link>
+            <Link href="/contact" className="hover:text-gray-600">Contact</Link>
+            <Link href="/news" className="hover:text-gray-600">News</Link>
           </nav>
         </div>
       </header>
 
+      {/* Mobile Navigation */}
+      <MobileNav isOpen={showMobileNav} onClose={() => setShowMobileNav(false)} />
+
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-20 mt-32">
+      <main className="flex-grow container mx-auto px-4 py-16 mt-24 md:py-20 md:mt-32">
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-16 max-w-5xl mx-auto">
           {/* Card 1 */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="relative h-48">
@@ -221,13 +246,13 @@ export default function BookNow() {
               />
             </div>
             <div className="p-4 text-center">
-              <h3 className="text-xl font-bold mb-2">1 HOUR SESSION</h3>
-              <p className="text-2xl font-bold mb-4">£45</p>
+              <h3 className="text-lg md:text-xl font-bold mb-2">1 HOUR SESSION</h3>
+              <p className="text-xl md:text-2xl font-bold mb-4">£45</p>
               <div className="flex gap-2">
                 <button
                   onClick={() => handlePaymentClick("Single Session", "£45", PRICE_IDS.single)}
                   disabled={!!isLoading}
-                  className={`flex-1 bg-black text-white py-2 rounded transition-colors text-sm ${
+                  className={`flex-1 bg-black text-white py-2 px-3 rounded transition-colors text-xs md:text-sm ${
                     isLoading === PRICE_IDS.single
                       ? 'opacity-50 cursor-not-allowed'
                       : 'hover:bg-gray-800'
@@ -239,7 +264,7 @@ export default function BookNow() {
                   href="https://www.paypal.com/paypalme/AshleighDowler/45GBP"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors text-center text-sm"
+                  className="flex-1 bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition-colors text-center text-xs md:text-sm"
                 >
                   Pay via PayPal
                 </a>
@@ -258,13 +283,13 @@ export default function BookNow() {
               />
             </div>
             <div className="p-4 text-center">
-              <h3 className="text-xl font-bold mb-2">BLOCK OF 5 LESSONS</h3>
-              <p className="text-2xl font-bold mb-4">£205</p>
+              <h3 className="text-lg md:text-xl font-bold mb-2">BLOCK OF 5 LESSONS</h3>
+              <p className="text-xl md:text-2xl font-bold mb-4">£205</p>
               <div className="flex gap-2">
                 <button
                   onClick={() => handlePaymentClick("Block of 5 Lessons", "£205", PRICE_IDS.fiveBlock)}
                   disabled={!!isLoading}
-                  className={`flex-1 bg-black text-white py-2 rounded transition-colors text-sm ${
+                  className={`flex-1 bg-black text-white py-2 px-3 rounded transition-colors text-xs md:text-sm ${
                     isLoading === PRICE_IDS.fiveBlock
                       ? 'opacity-50 cursor-not-allowed'
                       : 'hover:bg-gray-800'
@@ -276,7 +301,7 @@ export default function BookNow() {
                   href="https://www.paypal.com/paypalme/AshleighDowler/205GBP"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors text-center text-sm"
+                  className="flex-1 bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition-colors text-center text-xs md:text-sm"
                 >
                   Pay via PayPal
                 </a>
@@ -295,13 +320,13 @@ export default function BookNow() {
               />
             </div>
             <div className="p-4 text-center">
-              <h3 className="text-xl font-bold mb-2">BLOCK OF 10 LESSONS</h3>
-              <p className="text-2xl font-bold mb-4">£385</p>
+              <h3 className="text-lg md:text-xl font-bold mb-2">BLOCK OF 10 LESSONS</h3>
+              <p className="text-xl md:text-2xl font-bold mb-4">£385</p>
               <div className="flex gap-2">
                 <button
                   onClick={() => handlePaymentClick("Block of 10 Lessons", "£385", PRICE_IDS.tenBlock)}
                   disabled={!!isLoading}
-                  className={`flex-1 bg-black text-white py-2 rounded transition-colors text-sm ${
+                  className={`flex-1 bg-black text-white py-2 px-3 rounded transition-colors text-xs md:text-sm ${
                     isLoading === PRICE_IDS.tenBlock
                       ? 'opacity-50 cursor-not-allowed'
                       : 'hover:bg-gray-800'
@@ -313,7 +338,7 @@ export default function BookNow() {
                   href="https://www.paypal.com/paypalme/AshleighDowler/385GBP"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors text-center text-sm"
+                  className="flex-1 bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition-colors text-center text-xs md:text-sm"
                 >
                   Pay via PayPal
                 </a>
@@ -323,10 +348,10 @@ export default function BookNow() {
         </div>
 
         {/* Booking Information */}
-        <div className="max-w-2xl mx-auto text-center space-y-4">
-          <p className="text-lg">
+        <div className="max-w-2xl mx-auto text-center space-y-4 px-4">
+          <p className="text-base md:text-lg">
             <a 
-              href="https://calendly.com/vocalcoachashleigh?lid=4li639g9476c&utm_medium=email&utm_source=braze&utm_campaign=default_onboarding_21&utm_content=welcome_booking_page_text"
+              href="https://calendly.com/vocalcoachashleigh"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 underline"
@@ -335,14 +360,14 @@ export default function BookNow() {
             </a>
             {' '}to check Ashleigh&apos;s calendar and book your session.
           </p>
-          <p className="text-lg">
+          <p className="text-base md:text-lg">
             Alternatively{' '}
             <Link href="/contact" className="text-blue-600 hover:text-blue-800 underline">
               contact Ashleigh Here
             </Link>
             {' '}to arrange your session after paying by one of the above buttons.
           </p>
-          <p className="text-lg">
+          <p className="text-base md:text-lg">
             Terms and Conditions apply.{' '}
             <a 
               href="/Terms & Conditions for vocal lessons 2022.pdf"
@@ -357,7 +382,7 @@ export default function BookNow() {
         </div>
       </main>
 
-      {/* Checkout Preview Modal */}
+      {/* Checkout Preview Modal - Update for better mobile display */}
       <CheckoutPreview
         isOpen={showCheckout}
         onClose={() => setShowCheckout(false)}
@@ -366,9 +391,9 @@ export default function BookNow() {
       />
 
       {/* Footer */}
-      <footer className="bg-black text-white py-6 text-center">
+      <footer className="bg-black text-white py-4 md:py-6 text-center">
         <div className="container mx-auto px-4">
-          <p className="text-sm">©2025 by Ashleigh D Voice Coaching.</p>
+          <p className="text-xs md:text-sm">©2025 by Ashleigh D Voice Coaching.</p>
         </div>
       </footer>
     </div>

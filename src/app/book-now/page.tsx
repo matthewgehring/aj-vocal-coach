@@ -201,15 +201,15 @@ export default function BookNow() {
       </Suspense>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 md:py-6 z-40">
-        <div className="container mx-auto px-4">
-          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6">
+      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 safe-top z-40">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-4">
             ASHLEIGH D VOICE COACHING
           </h1>
           {/* Mobile menu button */}
           <button 
             onClick={() => setShowMobileNav(true)}
-            className="md:hidden fixed top-6 left-4 z-50 p-2"
+            className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -232,12 +232,12 @@ export default function BookNow() {
       <MobileNav isOpen={showMobileNav} onClose={() => setShowMobileNav(false)} />
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-16 mt-24 md:py-20 md:mt-32">
+      <main className="flex-grow container mx-auto px-4 py-16 mt-20 sm:mt-24 md:mt-32 max-w-7xl">
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-16 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 md:mb-16">
           {/* Card 1 */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="relative h-48">
+            <div className="relative h-40 sm:h-48">
               <Image
                 src="/Singer.avif"
                 alt="Single Session"
@@ -246,16 +246,16 @@ export default function BookNow() {
               />
             </div>
             <div className="p-4 text-center">
-              <h3 className="text-lg md:text-xl font-bold mb-2">1 HOUR SESSION</h3>
-              <p className="text-xl md:text-2xl font-bold mb-4">£45</p>
-              <div className="flex gap-2">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">1 HOUR SESSION</h3>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold mb-4">£45</p>
+              <div className="flex flex-col sm:flex-row gap-2">
                 <button
                   onClick={() => handlePaymentClick("Single Session", "£45", PRICE_IDS.single)}
                   disabled={!!isLoading}
-                  className={`flex-1 bg-black text-white py-2 px-3 rounded transition-colors text-xs md:text-sm ${
+                  className={`w-full bg-black text-white py-2.5 px-4 rounded-lg text-sm sm:text-base transition-colors ${
                     isLoading === PRICE_IDS.single
                       ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:bg-gray-800'
+                      : 'hover:bg-gray-800 active:bg-gray-900'
                   }`}
                 >
                   {isLoading === PRICE_IDS.single ? 'Processing...' : 'Pay with Card'}
@@ -264,7 +264,7 @@ export default function BookNow() {
                   href="https://www.paypal.com/paypalme/AshleighDowler/45GBP"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition-colors text-center text-xs md:text-sm"
+                  className="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg text-sm sm:text-base hover:bg-blue-700 active:bg-blue-800 transition-colors text-center"
                 >
                   Pay via PayPal
                 </a>
@@ -349,12 +349,12 @@ export default function BookNow() {
 
         {/* Booking Information */}
         <div className="max-w-2xl mx-auto text-center space-y-4 px-4">
-          <p className="text-base md:text-lg">
+          <p className="text-sm sm:text-base md:text-lg">
             <a 
               href="https://calendly.com/vocalcoachashleigh"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 underline"
+              className="text-blue-600 hover:text-blue-800 active:text-blue-900 underline"
             >
               Click Here
             </a>

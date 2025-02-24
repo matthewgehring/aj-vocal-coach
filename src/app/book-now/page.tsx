@@ -45,10 +45,10 @@ const CheckoutPreview = ({
           </div>
           <div className="space-y-2">
             <p className="text-sm text-gray-600">
-              You will be redirected to Stripe's secure checkout page to complete your purchase.
+              You will be redirected to Stripe&apos;s secure checkout page to complete your purchase.
             </p>
             <p className="text-sm text-gray-600">
-              After payment, you'll receive a confirmation email with next steps.
+              After payment, you&apos;ll receive a confirmation email with next steps.
             </p>
           </div>
           <div className="flex justify-end gap-2 mt-6">

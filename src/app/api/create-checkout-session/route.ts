@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-01-27.acacia',
 });
 
 export async function POST(req: Request) {
@@ -24,11 +24,17 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (err: any) {
-    console.error('Error:', err);
+  } catch (err) {
+    if (err instanceof Stripe.errors.StripeError) {
+      return NextResponse.json(
+        { error: err.message },
+        { status: err.statusCode || 500 }
+      );
+    }
+    
     return NextResponse.json(
-      { error: err.message },
-      { status: err.statusCode || 500 }
+      { error: 'An unexpected error occurred' },
+      { status: 500 }
     );
   }
 } 

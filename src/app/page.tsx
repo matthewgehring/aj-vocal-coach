@@ -148,7 +148,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800 underline"
                 >
-                  Estill Voice International's website here
+                  Estill Voice International&apos;s website here
                 </a>.
               </p>
 
@@ -159,7 +159,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800 underline"
                 >
-                  Click here to see Ashleigh's listing at EVI.
+                  Click here to see Ashleigh&apos;s listing at EVI.
                 </a>
               </p>
 
@@ -204,7 +204,7 @@ export default function Home() {
 
               <div className="mt-8 space-y-4">
                 <p className="text-lg">
-                  If you're ready to take control of your voice, then contact Ashleigh to arrange a lesson 
+                  If you&apos;re ready to take control of your voice, then contact Ashleigh to arrange a lesson 
                   in-person in Manchester or online.
                 </p>
 

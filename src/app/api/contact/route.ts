@@ -23,7 +23,7 @@ export async function POST(req: Request) {
         address: process.env.EMAIL_USER as string
       },
       replyTo: email, // Allow Ashleigh to reply directly to the sender
-      to: 'mgehring9@gmail.com',
+      to: 'ashleigh.dowler@hotmail.co.uk',
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <h2>New Contact Form Submission</h2>

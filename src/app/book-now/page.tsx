@@ -6,9 +6,11 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const PRICE_IDS = {
-  single: 'price_XXXXXXXXXXXXX', // Replace with actual price ID for single session
-  fiveBlock: 'price_XXXXXXXXXXXXX', // Replace with actual price ID for 5 sessions
-  tenBlock: 'price_XXXXXXXXXXXXX', // Replace with actual price ID for 10 sessions
+  // Get these IDs from your Stripe Dashboard after creating the products
+  // Products → Select Product → Copy Price ID
+  single: 'price_1Qw6XUISUHrXggznAv5c4VRn',    // Single Session (£45)
+  fiveBlock: 'price_1Qw6YeISUHrXggznaDbKI6Ak', // Block of 5 Lessons (£205)
+  tenBlock: 'price_1Qw6a2ISUHrXggznscIqhsHI',  // Block of 10 Lessons (£385)
 };
 
 // Add CheckoutPreview component

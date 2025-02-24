@@ -122,13 +122,13 @@ export default function Home() {
       {/* Header and Navigation */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-40">
         <div className="container mx-auto px-4 py-4 md:py-6">
-          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6 text-black">
             ASHLEIGH D VOICE COACHING
           </h1>
           {/* Mobile menu button */}
           <button 
             onClick={() => setShowMobileNav(true)}
-            className="md:hidden fixed top-6 left-4 z-50 p-2"
+            className="md:hidden fixed top-6 left-4 z-50 p-2 text-black"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -136,13 +136,13 @@ export default function Home() {
           </button>
           {/* Desktop navigation */}
           <nav className="hidden md:flex justify-center space-x-6 text-lg">
-            <button onClick={() => scrollToSection("home")} className="hover:text-gray-600">Home</button>
-            <button onClick={() => scrollToSection("about")} className="hover:text-gray-600">About</button>
-            <button onClick={() => scrollToSection("lessons")} className="hover:text-gray-600">Lessons</button>
-            <button onClick={() => scrollToSection("testimonials")} className="hover:text-gray-600">Testimonials</button>
-            <Link href="/book-now" className="hover:text-gray-600">Book Now</Link>
-            <Link href="/contact" className="hover:text-gray-600">Contact</Link>
-            <Link href="/news" className="hover:text-gray-600">News</Link>
+            <button onClick={() => scrollToSection("home")} className="hover:text-gray-600 text-black">Home</button>
+            <button onClick={() => scrollToSection("about")} className="hover:text-gray-600 text-black">About</button>
+            <button onClick={() => scrollToSection("lessons")} className="hover:text-gray-600 text-black">Lessons</button>
+            <button onClick={() => scrollToSection("testimonials")} className="hover:text-gray-600 text-black">Testimonials</button>
+            <Link href="/book-now" className="hover:text-gray-600 text-black">Book Now</Link>
+            <Link href="/contact" className="hover:text-gray-600 text-black">Contact</Link>
+            <Link href="/news" className="hover:text-gray-600 text-black">News</Link>
           </nav>
         </div>
       </header>
@@ -193,7 +193,7 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="min-h-screen bg-gray-50 py-12 md:py-20">
+        <section id="about" className="min-h-screen bg-gray-50 py-12 md:py-20 text-black">
           <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Left Column - Image */}
             <div className="relative h-[400px] md:h-full md:min-h-[800px]">
@@ -374,7 +374,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="min-h-screen bg-gray-50 py-12 md:py-20">
+        <section id="testimonials" className="min-h-screen bg-gray-50 py-12 md:py-20 text-black">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Testimonials</h2>
             
@@ -461,13 +461,13 @@ export default function Home() {
                 <div className="space-y-2">
                   <a 
                     href="mailto:ashleigh.dowler@hotmail.co.uk"
-                    className="text-base md:text-lg block hover:text-blue-400 transition-colors"
+                    className="text-base md:text-lg block hover:text-gray-300 transition-colors text-white"
                   >
                     ashleigh.dowler@hotmail.co.uk
                   </a>
                   <a 
                     href="tel:07841049513"
-                    className="text-base md:text-lg block hover:text-blue-400 transition-colors"
+                    className="text-base md:text-lg block hover:text-gray-300 transition-colors text-white"
                   >
                     07841049513
                   </a>

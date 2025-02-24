@@ -119,13 +119,13 @@ export default function Contact() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 md:py-6 z-40">
         <div className="container mx-auto px-4">
-          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6 text-black">
             ASHLEIGH D VOICE COACHING
           </h1>
           {/* Mobile menu button */}
           <button 
             onClick={() => setShowMobileNav(true)}
-            className="md:hidden fixed top-6 left-4 z-50 p-2"
+            className="md:hidden fixed top-6 left-4 z-50 p-2 text-black"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -133,13 +133,13 @@ export default function Contact() {
           </button>
           {/* Desktop navigation */}
           <nav className="hidden md:flex justify-center space-x-6 text-lg">
-            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600">Home</Link>
-            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600">About</Link>
-            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600">Lessons</Link>
-            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600">Testimonials</Link>
-            <Link href="/book-now" className="hover:text-gray-600">Book Now</Link>
-            <Link href="/contact" className="hover:text-gray-600">Contact</Link>
-            <Link href="/news" className="hover:text-gray-600">News</Link>
+            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600 text-black">Home</Link>
+            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600 text-black">About</Link>
+            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600 text-black">Lessons</Link>
+            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600 text-black">Testimonials</Link>
+            <Link href="/book-now" className="hover:text-gray-600 text-black">Book Now</Link>
+            <Link href="/contact" className="hover:text-gray-600 text-black">Contact</Link>
+            <Link href="/news" className="hover:text-gray-600 text-black">News</Link>
           </nav>
         </div>
       </header>
@@ -148,7 +148,7 @@ export default function Contact() {
       <MobileNav isOpen={showMobileNav} onClose={() => setShowMobileNav(false)} />
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-16 mt-24 md:py-20 md:mt-32">
+      <main className="flex-grow container mx-auto px-4 py-16 mt-24 md:py-20 md:mt-32 text-black">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Left Column - Contact Info */}
           <div className="space-y-6">
@@ -160,13 +160,13 @@ export default function Contact() {
             <div className="space-y-2">
               <a 
                 href="mailto:ashleigh.dowler@hotmail.co.uk"
-                className="text-base md:text-lg block hover:text-gray-600 transition-colors"
+                className="text-base md:text-lg block hover:text-gray-600 transition-colors text-black"
               >
                 ashleigh.dowler@hotmail.co.uk
               </a>
               <a 
                 href="tel:07841049513"
-                className="text-base md:text-lg block hover:text-gray-600 transition-colors"
+                className="text-base md:text-lg block hover:text-gray-600 transition-colors text-black"
               >
                 07841049513
               </a>
@@ -183,7 +183,7 @@ export default function Contact() {
                 onChange={handleInputChange}
                 placeholder="Name"
                 required
-                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg"
+                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg text-black placeholder-gray-600"
               />
             </div>
 
@@ -195,7 +195,7 @@ export default function Contact() {
                 onChange={handleInputChange}
                 placeholder="Email"
                 required
-                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg"
+                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg text-black placeholder-gray-600"
               />
             </div>
 
@@ -206,7 +206,7 @@ export default function Contact() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="Phone"
-                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg"
+                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg text-black placeholder-gray-600"
               />
             </div>
 
@@ -218,7 +218,7 @@ export default function Contact() {
                 onChange={handleInputChange}
                 placeholder="Subject"
                 required
-                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg"
+                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all text-base md:text-lg text-black placeholder-gray-600"
               />
             </div>
 
@@ -230,7 +230,7 @@ export default function Contact() {
                 placeholder="Type your message here..."
                 rows={4}
                 required
-                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all resize-none text-base md:text-lg"
+                className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all resize-none text-base md:text-lg text-black placeholder-gray-600"
               ></textarea>
             </div>
 

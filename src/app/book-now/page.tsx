@@ -203,7 +203,7 @@ export default function BookNow() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 safe-top z-40">
         <div className="container mx-auto px-4 max-w-7xl">
-          <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-4">
+          <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mb-4">
             ASHLEIGH D VOICE COACHING
           </h1>
           {/* Mobile menu button */}

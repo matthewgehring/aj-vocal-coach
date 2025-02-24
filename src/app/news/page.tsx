@@ -64,9 +64,9 @@ export default function News() {
   return (
     <div className={`min-h-screen flex flex-col ${isMounted ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 md:py-6 z-40">
-        <div className="container mx-auto px-4">
-          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6 text-black">
+      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-4 safe-top z-40">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mb-4 text-black">
             ASHLEIGH D VOICE COACHING
           </h1>
           {/* Mobile menu button */}

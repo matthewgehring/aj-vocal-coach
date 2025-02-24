@@ -122,7 +122,7 @@ export default function Home() {
       {/* Header and Navigation */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-40">
         <div className="container mx-auto px-4 py-4 md:py-6">
-          <h1 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6 text-black">
+          <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mb-4 text-black">
             ASHLEIGH D VOICE COACHING
           </h1>
           {/* Mobile menu button */}

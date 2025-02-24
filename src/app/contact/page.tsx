@@ -1,16 +1,69 @@
 'use client';
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Contact() {
   const [isMounted, setIsMounted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const router = useRouter();
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
@@ -96,11 +149,15 @@ export default function Contact() {
           </div>
 
           {/* Right Column - Contact Form */}
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="group">
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
                 placeholder="Name"
+                required
                 className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all"
               />
             </div>
@@ -108,7 +165,11 @@ export default function Contact() {
             <div className="group">
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 placeholder="Email"
+                required
                 className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all"
               />
             </div>
@@ -116,6 +177,9 @@ export default function Contact() {
             <div className="group">
               <input
                 type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
                 placeholder="Phone"
                 className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all"
               />
@@ -124,24 +188,47 @@ export default function Contact() {
             <div className="group">
               <input
                 type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
                 placeholder="Subject"
+                required
                 className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all"
               />
             </div>
 
             <div className="group">
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
                 placeholder="Type your message here..."
                 rows={4}
+                required
                 className="w-full bg-transparent border-b border-black px-3 py-2 focus:outline-none group-hover:border group-hover:border-black transition-all resize-none"
               ></textarea>
             </div>
 
+            {submitStatus === 'success' && (
+              <div className="text-green-600 text-center">
+                Message sent successfully! We&apos;ll get back to you soon.
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="text-red-600 text-center">
+                Failed to send message. Please try again or contact us directly.
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-black text-white py-3 text-center hover:bg-gray-800 transition-colors"
+              disabled={isSubmitting}
+              className={`w-full bg-black text-white py-3 text-center transition-colors ${
+                isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'
+              }`}
             >
-              Submit
+              {isSubmitting ? 'Sending...' : 'Submit'}
             </button>
           </form>
         </div>

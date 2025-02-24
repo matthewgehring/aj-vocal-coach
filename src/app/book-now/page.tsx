@@ -251,14 +251,14 @@ export default function BookNow() {
             <div className="p-4 text-center">
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">1 HOUR SESSION</h3>
               <p className="text-lg sm:text-xl md:text-2xl font-bold mb-4">£45</p>
-              <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex gap-2">
                 <button
                   onClick={() => handlePaymentClick("Single Session", "£45", PRICE_IDS.single)}
                   disabled={!!isLoading}
-                  className={`w-full bg-black text-white py-2.5 px-4 rounded-lg text-sm sm:text-base transition-colors ${
+                  className={`flex-1 bg-black text-white py-2 px-3 rounded transition-colors text-xs md:text-sm ${
                     isLoading === PRICE_IDS.single
                       ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:bg-gray-800 active:bg-gray-900'
+                      : 'hover:bg-gray-800'
                   }`}
                 >
                   {isLoading === PRICE_IDS.single ? 'Processing...' : 'Pay with Card'}
@@ -267,7 +267,7 @@ export default function BookNow() {
                   href="https://www.paypal.com/paypalme/AshleighDowler/45GBP"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg text-sm sm:text-base hover:bg-blue-700 active:bg-blue-800 transition-colors text-center"
+                  className="flex-1 bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition-colors text-center text-xs md:text-sm"
                 >
                   Pay via PayPal
                 </a>

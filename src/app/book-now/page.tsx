@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 export default function BookNow() {
   const [isMounted, setIsMounted] = useState(false);
-  const [isFading, setIsFading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -16,34 +15,29 @@ export default function BookNow() {
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
-    setIsFading(true);
+    if (!isMounted) return;
+    
+    router.push(path);
+    
+    // After navigation, scroll to the section (if it's a hash link)
+    if (path.includes('#')) {
+      const sectionId = path.split('#')[1];
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const headerOffset = 140;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-    // Start fade out
-    setTimeout(() => {
-      router.push(path);
-      
-      // After navigation, scroll to the section (if it's a hash link)
-      if (path.includes('#')) {
-        const sectionId = path.split('#')[1];
-        setTimeout(() => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            const headerOffset = 140; // Height of header (approx 128px) + some padding
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth"
-            });
-          }
-        }, 100);
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
       }
-    }, 500); // Wait for fade out animation
+    }
   };
 
   return (
-    <div className={`min-h-screen flex flex-col ${isMounted ? 'transition-opacity duration-500' : ''} ${isFading ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`min-h-screen flex flex-col ${isMounted ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-6 z-50">
         <div className="container mx-auto px-4">
@@ -51,18 +45,18 @@ export default function BookNow() {
             ASHLEIGH D VOICE COACHING
           </h1>
           <nav className="flex justify-center space-x-6 text-lg">
-            <a href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600 cursor-pointer">
+            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600 cursor-pointer">
               Home
-            </a>
-            <a href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600 cursor-pointer">
+            </Link>
+            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600 cursor-pointer">
               About
-            </a>
-            <a href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600 cursor-pointer">
+            </Link>
+            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600 cursor-pointer">
               Lessons
-            </a>
-            <a href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600 cursor-pointer">
+            </Link>
+            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600 cursor-pointer">
               Testimonials
-            </a>
+            </Link>
             <Link href="/book-now" className="hover:text-gray-600">
               Book Now
             </Link>
@@ -179,7 +173,7 @@ export default function BookNow() {
             >
               Click Here
             </a>
-            {' '}to check Ashleigh's calendar and send a book your session.
+            {' '}to check Ashleigh&apos;s calendar and book your session.
           </p>
           <p className="text-lg">
             Alternatively{' '}

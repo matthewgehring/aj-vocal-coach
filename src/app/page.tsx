@@ -6,18 +6,16 @@ import { useEffect, useState } from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 export default function Home() {
-  const [isFading, setIsFading] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Fade in on initial load
-    setIsLoading(false);
+    setIsMounted(true);
   }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 140; // Height of header (approx 128px) + some padding
+      const headerOffset = 140;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -29,7 +27,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen transition-opacity duration-500 ${isLoading || isFading ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`min-h-screen ${isMounted ? 'transition-opacity duration-500 opacity-100' : 'opacity-0'}`}>
       {/* Header and Navigation */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50">
         <div className="container mx-auto px-4 py-6">

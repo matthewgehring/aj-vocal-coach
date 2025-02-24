@@ -217,13 +217,13 @@ export default function BookNow() {
           </button>
           {/* Desktop navigation */}
           <nav className="hidden md:flex justify-center space-x-6 text-lg">
-            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600">Home</Link>
-            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600">About</Link>
-            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600">Lessons</Link>
-            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600">Testimonials</Link>
-            <Link href="/book-now" className="hover:text-gray-600">Book Now</Link>
-            <Link href="/contact" className="hover:text-gray-600">Contact</Link>
-            <Link href="/news" className="hover:text-gray-600">News</Link>
+            <Link href="/#home" onClick={(e) => handleNavigation(e, '/#home')} className="hover:text-gray-600 text-black">Home</Link>
+            <Link href="/#about" onClick={(e) => handleNavigation(e, '/#about')} className="hover:text-gray-600 text-black">About</Link>
+            <Link href="/#lessons" onClick={(e) => handleNavigation(e, '/#lessons')} className="hover:text-gray-600 text-black">Lessons</Link>
+            <Link href="/#testimonials" onClick={(e) => handleNavigation(e, '/#testimonials')} className="hover:text-gray-600 text-black">Testimonials</Link>
+            <Link href="/book-now" className="hover:text-gray-600 text-black">Book Now</Link>
+            <Link href="/contact" className="hover:text-gray-600 text-black">Contact</Link>
+            <Link href="/news" className="hover:text-gray-600 text-black">News</Link>
           </nav>
         </div>
       </header>

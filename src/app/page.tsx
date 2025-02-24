@@ -484,7 +484,7 @@ export default function Home() {
                     onChange={handleInputChange}
                     placeholder="Name"
                     required
-                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all"
+                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all text-white placeholder-gray-300"
                   />
                 </div>
 
@@ -496,7 +496,7 @@ export default function Home() {
                     onChange={handleInputChange}
                     placeholder="Email"
                     required
-                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all"
+                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all text-white placeholder-gray-300"
                   />
                 </div>
 
@@ -507,7 +507,7 @@ export default function Home() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="Phone"
-                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all"
+                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all text-white placeholder-gray-300"
                   />
                 </div>
 
@@ -519,7 +519,7 @@ export default function Home() {
                     onChange={handleInputChange}
                     placeholder="Subject"
                     required
-                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all"
+                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all text-white placeholder-gray-300"
                   />
                 </div>
 
@@ -531,7 +531,7 @@ export default function Home() {
                     placeholder="Type your message here..."
                     rows={4}
                     required
-                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all resize-none"
+                    className="w-full bg-transparent border-b border-white px-3 py-2 focus:outline-none group-hover:border group-hover:border-white transition-all resize-none text-white placeholder-gray-300"
                   ></textarea>
                 </div>
 

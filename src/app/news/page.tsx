@@ -16,13 +16,13 @@ const MobileNav = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
           <button onClick={onClose} className="text-2xl">✕</button>
         </div>
         <nav className="flex flex-col space-y-4">
-          <Link href="/#home" className="hover:text-gray-600 py-2">Home</Link>
-          <Link href="/#about" className="hover:text-gray-600 py-2">About</Link>
-          <Link href="/#lessons" className="hover:text-gray-600 py-2">Lessons</Link>
-          <Link href="/#testimonials" className="hover:text-gray-600 py-2">Testimonials</Link>
-          <Link href="/book-now" className="hover:text-gray-600 py-2">Book Now</Link>
-          <Link href="/contact" className="hover:text-gray-600 py-2">Contact</Link>
-          <Link href="/news" className="hover:text-gray-600 py-2">News</Link>
+          <Link href="/#home" className="hover:text-gray-600 text-black py-2">Home</Link>
+          <Link href="/#about" className="hover:text-gray-600 text-black py-2">About</Link>
+          <Link href="/#lessons" className="hover:text-gray-600 text-black py-2">Lessons</Link>
+          <Link href="/#testimonials" className="hover:text-gray-600 text-black py-2">Testimonials</Link>
+          <Link href="/book-now" className="hover:text-gray-600 text-black py-2">Book Now</Link>
+          <Link href="/contact" className="hover:text-gray-600 text-black py-2">Contact</Link>
+          <Link href="/news" className="hover:text-gray-600 text-black py-2">News</Link>
         </nav>
       </div>
     </div>
